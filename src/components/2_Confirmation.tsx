@@ -57,6 +57,7 @@ export function Confirmation({
           variant="contained"
           color="primary"
           onClick={handleAccept}
+          aria-label="Accept"
         >
           Accept
         </Button>
@@ -64,6 +65,7 @@ export function Confirmation({
           variant="outlined"
           color="secondary"
           onClick={handleDecline}
+          aria-label="Decline"
         >
           Decline
         </Button>

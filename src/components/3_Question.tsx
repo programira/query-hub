@@ -45,6 +45,7 @@ export function Question({ question, answer }: QuestionProps) {
             color="primary"
             sx={{ marginTop: 2 }}
             onClick={() => setIsConfirming(true)}
+            aria-label="Show Answer"
           >
             Show Answer
           </Button>
@@ -83,12 +84,13 @@ export function Question({ question, answer }: QuestionProps) {
               borderRadius: 1,
             }}
           >
-            <Typography variant="body1">{answer}</Typography>
+            <Typography variant="body1" role="alert">{answer}</Typography>
             <Button
               variant="outlined"
               color="secondary"
               sx={{ marginTop: 1 }}
               onClick={() => setIsRevealed(false)}
+              aria-label="Hide Answer"
             >
               Hide Answer
             </Button>
