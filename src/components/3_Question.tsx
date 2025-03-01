@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Confirmation } from "./2_Confirmation";
+import { QuestionProps } from "../types/question";
+import { Card, CardContent, Typography, Button, Box } from "@mui/material";
 
 /*
   The Question component should render the question, and a "Show answer" button.
@@ -11,46 +13,88 @@ import { Confirmation } from "./2_Confirmation";
   If "decline" is clicked, the Question component should go back to the initial state.
 */
 
-interface Props {
-  question: string;
-  answer: string;
-}
+// interface Props {
+//   question: string;
+//   answer: string;
+// }
 
-export function Question({ question, answer }: Props) {
+export function Question({ question, answer }: QuestionProps) {
   const [isConfirming, setIsConfirming] = useState(false);
   const [isRevealed, setIsRevealed] = useState(false);
-  
+
   return (
-    <div className="question">
-    <section className="section">{question}</section>
+    <Card
+      sx={{
+        width: "100%",
+        backgroundColor: "white",
+        padding: 2,
+        boxShadow: 3,
+        borderRadius: 2,
+        marginBottom: 2,
+      }}
+    >
+      <CardContent>
+        <Typography variant="h6" component="h2">
+          {question}
+        </Typography>
 
-    {/* Show the "Show Answer" button if confirmation is not active and answer is not revealed */}
-    {!isConfirming && !isRevealed && (
-      <button onClick={() => setIsConfirming(true)}>Show Answer</button>
-    )}
+        {/* Show the "Show Answer" button if confirmation is not active and answer is not revealed */}
+        {!isConfirming && !isRevealed && (
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{ marginTop: 2 }}
+            onClick={() => setIsConfirming(true)}
+          >
+            Show Answer
+          </Button>
+        )}
 
-    {/* Show Confirmation when user clicks "Show Answer" */}
-    {isConfirming && (
-      <Confirmation
-        message="Are you sure you want to reveal the answer?"
-        type="caution"
-        accept={() => {
-          setIsRevealed(true); // ✅ Show the answer
-          setIsConfirming(false); // ✅ Hide the confirmation
-        }}
-        decline={() => {
-          setIsConfirming(false); // ✅ Hide confirmation
-        }}
-      />
-    )}
+        {/* Show Confirmation when user clicks "Show Answer" */}
+        {isConfirming && (
+          <Box
+            sx={{
+              marginTop: 2,
+              padding: 2,
+              backgroundColor: "#F0F0F0",
+              borderRadius: 1,
+            }}>
+            <Confirmation
+              message="Are you sure you want to reveal the answer?"
+              type="caution"
+              accept={() => {
+                setIsRevealed(true);
+                setIsConfirming(false);
+              }}
+              decline={() => {
+                setIsConfirming(false);
+              }}
+            />
+          </Box>
+        )}
 
-    {/* Show the answer if accepted */}
-    {isRevealed && (
-      <>
-        <p className="answer">{answer}</p>
-        <button onClick={() => setIsRevealed(false)}>Hide Answer</button>
-      </>
-    )}
-  </div>
+        {/* Show the answer if accepted */}
+        {isRevealed && (
+          <Box
+            sx={{
+              marginTop: 2,
+              padding: 2,
+              backgroundColor: "#F0F0F0",
+              borderRadius: 1,
+            }}
+          >
+            <Typography variant="body1">{answer}</Typography>
+            <Button
+              variant="outlined"
+              color="secondary"
+              sx={{ marginTop: 1 }}
+              onClick={() => setIsRevealed(false)}
+            >
+              Hide Answer
+            </Button>
+          </Box>
+        )}
+      </CardContent>
+    </Card>
   );
 }

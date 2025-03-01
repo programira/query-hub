@@ -1,4 +1,6 @@
 import React, { ReactNode } from "react";
+import { JSX } from "react";
+import { NotificationProps, NotificationType } from "../types/notification";
 
 /*
   This component should render the message, and set the className based on the type.
@@ -11,11 +13,11 @@ import React, { ReactNode } from "react";
   When done, move to 2_Confirmation.tsx.
 */
 
-export interface NotificationProps {
-  message: string;
-  type?: "success" | "message" | "caution" | "error";
-  children?: ReactNode;
-}
+// export interface NotificationProps {
+//   message: string;
+//   type?: "success" | "message" | "caution" | "error";
+//   children?: ReactNode;
+// }
 
 export function Notification({ message, type = "message" }: NotificationProps) {
   const typeClassMap: Record<string, string> = {

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { Notification, NotificationProps } from "./1_Notification";
+import { useState } from "react";
+import { Notification } from "./1_Notification";
+import { NotificationProps } from "../types/notification";
+import { Box, Button } from "@mui/material";
 
 /*
   Now build on the Notification component by creating a Confirmation component. 
@@ -39,9 +41,33 @@ export function Confirmation({
 
   return (
     <>
+      {/* Notification Message */}
       <Notification type={type} message={message} />
-      <button onClick={handleAccept}>Accept</button>
-      <button onClick={handleDecline}>Decline</button>
+
+      {/* Action Buttons */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 2,
+          marginTop: 2,
+        }}
+      >
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleAccept}
+        >
+          Accept
+        </Button>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={handleDecline}
+        >
+          Decline
+        </Button>
+      </Box>
     </>
-  )
+  );
 }
