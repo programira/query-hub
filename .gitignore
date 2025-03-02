@@ -34,3 +34,14 @@ coverage/
 .env.de
 
 *storybook.log
+
+# Playwright Test Reports & Logs
+playwright-report/
+test-results/
+
+# Playwright Traces (used for debugging, but not needed in Git)
+trace.zip
+*.trace
+
+# Playwright Downloads (Browsers & Dependencies)
+playwright/.cache
